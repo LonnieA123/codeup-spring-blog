@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>you guessed:</h1>
+<h1 th:text="${number}"></h1>
+<h1>it was:</h1>
+<h1 th:text="${random}"></h1>
+
+<h2 th:if="${number == random}">money</h2>
+
+<h2 th:if="${number != random}">no money</h2>
+
+</body>
+</html>
