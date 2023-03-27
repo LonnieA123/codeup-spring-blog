@@ -5,10 +5,23 @@
     <title>Title</title>
 </head>
 <body>
+<nav th:replace="partials/nav :: navbar">
+
+</nav>
+
+<header th:replace="partials/nav :: header">
+
+
+</header>
 
 <div th:each="post : ${posts}">
     <p th:text="${post.title}" />
 </div>
+
+<footer th:replace="partials/nav :: footer">
+
+</footer>
+
 
 </body>
 </html>
