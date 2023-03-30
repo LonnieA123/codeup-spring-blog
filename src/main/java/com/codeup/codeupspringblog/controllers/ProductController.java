@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class ProductController {
 
+
+
     @GetMapping("/products/create")
     public String productsview(){
         return "products";

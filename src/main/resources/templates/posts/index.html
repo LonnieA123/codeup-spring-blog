@@ -16,6 +16,7 @@
 
 <div th:each="post : ${posts}">
     <p th:text="${post.title}" />
+    <p th:text="${post.body}" />
 </div>
 
 <footer th:replace="partials/nav :: footer">
