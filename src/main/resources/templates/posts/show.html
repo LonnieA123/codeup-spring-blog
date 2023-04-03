@@ -3,20 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:replace="partials/pieces :: bootstrapLink">
 </head>
 <body>
+    <nav th:replace="partials/pieces :: navbar"></nav>
+    <div th:text="${post.title}"></div>
+    <div th:text="${user.email}"></div>
+    <div th:text="${post.body}"></div>
 
-<div th:text="${post.title}"></div>
-<div th:text="${user.email}"></div>
-<div th:text="${post.body}"></div>
 
 
-<div>Comment</div>
-<form>
-    <label for="comment">Comment</label>
-    <input type="text" name="comment" id="comment">
-    <button>submit</button>
-</form>
-
+<script th:replace="partials/pieces :: bootstrapScript"></script>
 </body>
 </html>

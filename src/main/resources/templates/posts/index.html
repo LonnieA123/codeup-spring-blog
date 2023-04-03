@@ -3,26 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link th:replace="partials/pieces :: bootstrapLink">
 </head>
 <body>
-<nav th:replace="partials/nav :: navbar">
 
-</nav>
-
-<header th:replace="partials/nav :: header">
+    <nav th:replace="partials/pieces :: navbar"></nav>
 
 
-</header>
+    <div th:each="post : ${posts}" class="space-between">
 
-<div th:each="post : ${posts}">
-    <p th:text="${post.title}" />
-    <p th:text="${post.body}" />
-</div>
+        <div class="card" style="width: 18rem;">
+            <div class="card-header">
+                <h1>Title:</h1>
+                <p th:text="${post.title}" />
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <h3>Body:</h3>
+                    <p th:text="${post.body}" />
+                </li>
+            </ul>
+        </div>
 
-<footer th:replace="partials/nav :: footer">
+    </div>
 
-</footer>
+    <footer th:replace="partials/pieces :: footer"></footer>
 
-
+<script th:replace="partials/pieces :: bootstrapScript"></script>
 </body>
 </html>

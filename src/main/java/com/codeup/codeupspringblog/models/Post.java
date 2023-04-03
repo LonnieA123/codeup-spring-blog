@@ -18,9 +18,6 @@ public class Post {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @OneToMany(mappedBy = "post")
-    private List<Comment> comments;
-
 
 
     public Post(String title, String body, User user){

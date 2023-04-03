@@ -8,16 +8,14 @@
 <body>
     <nav th:replace="partials/pieces :: navbar"></nav>
 
-    <form action="/posts/create" method="post">
-        <label for="title">Title</label>
-        <input type="text" name="title" id="title">
+    <form th:action="@{/posts/{id}/edit(id = ${id})}" th:method="post" th:object="${post}">
+        <label for="title">TITLE</label>
+        <input id="title" type="text" th:field="*{title}" >
+        <label>BODY</label>
+        <input id="body" type="text" th:field="*{body}" >
+        <button>submit</button>
 
-        <label for="body">body</label>
-        <input type="text" name="body" id="body">
-
-        <button>Submit</button>
     </form>
-
     <script th:replace="partials/pieces :: bootstrapScript"></script>
 </body>
 </html>
