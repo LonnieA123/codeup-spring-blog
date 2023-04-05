@@ -10,14 +10,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @Column(nullable = false, length = 50)
+    @Column(nullable = false, length = 50, unique=true)
     private String username;
-    @Column(nullable = false)
+    @Column(nullable = false, unique=true)
     private String email;
     @Column(nullable = false)
     private String password;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Post> posts;
+
+
 
 
     public User() {
@@ -29,6 +31,12 @@ public class User {
         this.password = password;
     }
 
+    public User(User copy) {
+        id = copy.id; // This line is SUPER important! Many things won't work if it's absent
+        email = copy.email;
+        username = copy.username;
+        password = copy.password;
+    }
 
 
     public List<Post> getPosts() {
@@ -36,14 +44,6 @@ public class User {
     }
 
     public void setPosts(List<Post> posts) {
-        this.posts = posts;
-    }
-
-    public List<Post> getAds(){
-        return posts;
-    }
-
-    public void setAds(List<Post> posts){
         this.posts = posts;
     }
 

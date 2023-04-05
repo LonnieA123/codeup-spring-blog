@@ -7,28 +7,28 @@
 </head>
 <body>
 
-    <nav th:replace="partials/pieces :: navbar"></nav>
+    <div>
+        <nav th:replace="partials/pieces :: navbar"></nav>
+    </div>
+<div class="d-flex">
+    <div class="d-flex justify-content-evenly flex-wrap mt-3">
 
-
-    <div th:each="post : ${posts}" class="space-between">
-
-        <div class="card" style="width: 18rem;">
-            <div class="card-header">
+        <div th:each="post : ${posts}" class="col-4">
+            <div class="card" style="width: 18rem;">
                 <h1>Title:</h1>
                 <p th:text="${post.title}" />
+                <h3>Body:</h3>
+                <p th:text="${post.body}" />
+                <h3>Show more:</h3>
             </div>
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item">
-                    <h3>Body:</h3>
-                    <p th:text="${post.body}" />
-                </li>
-            </ul>
         </div>
 
     </div>
+</div>
 
-    <footer th:replace="partials/pieces :: footer"></footer>
 
+<footer th:replace="partials/pieces :: footer"></footer>
 <script th:replace="partials/pieces :: bootstrapScript"></script>
+
 </body>
 </html>

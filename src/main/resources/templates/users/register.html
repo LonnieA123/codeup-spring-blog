@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register for Adlister</title>
+    <link th:replace="partials/pieces :: bootstrapLink">
+</head>
+<body>
+<nav th:replace="partials/pieces :: navbar"></nav>
+<h1>Register for blog</h1>
+    <form action="/register" method="post">
+        <label for="username">Username:</label>
+        <input type="text" name="username" id="username">
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email">
+        <label for="password">Password:</label>
+        <input type="password" name="password" id="password">
+        <input type="submit" value="Register">
+    </form>
+<script th:replace="partials/pieces :: bootstrapScript"></script>
+</body>
+</html>

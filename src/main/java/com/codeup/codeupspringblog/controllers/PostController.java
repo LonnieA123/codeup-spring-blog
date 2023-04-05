@@ -5,6 +5,7 @@ import com.codeup.codeupspringblog.models.Post;
 import com.codeup.codeupspringblog.models.User;
 import com.codeup.codeupspringblog.repositories.PostRepository;
 import com.codeup.codeupspringblog.repositories.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -61,18 +62,38 @@ public class PostController {
         return "redirect:/posts";
     }
 
+    @GetMapping("/posts/{id}/delete")
+    public String deleteButton(@PathVariable long id){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Post post = postDao.findById(id).get();
+
+        if (post.getUser().getUsername().equals(user.getUsername())){
+            postDao.deleteById(id);
+        }
+        return "redirect:/posts";
+    }
+
+
+
+
     @GetMapping("/posts/create")
-    public String createForm(){
-        return "/posts/create";
+    public String createForm(Model model){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        if(user != null){
+            model.addAttribute("post",new Post());
+            return "/posts/create";
+        }
+        return "redirect:/login";
+
     }
 
     @PostMapping("/posts/create")
-    public String create(@RequestParam (name="title") String title,
-                         @RequestParam (name="body") String body){
-        User user = userDao.findById(1L).get();
-        Post post = new Post(title,body,user);
-        postDao.save(post);
-        emailService.prepareAndSend(post,"test","plz work");
+    public String create(@ModelAttribute Post post){
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        Post postToSave = new Post(post.getTitle(),post.getBody(),user);
+        postDao.save(postToSave);
+
+//        emailService.prepareAndSend(post,"test","plz work");
         return "redirect:/posts";
     }
 
